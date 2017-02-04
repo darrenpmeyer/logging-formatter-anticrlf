@@ -1,4 +1,4 @@
-from distutils.core import setup
+from setuptools import setup
 
 setup(
     name='logging-formatter-anticrlf',
@@ -8,5 +8,5 @@ setup(
     license='BSD 2-clause',
     author='Darren P Meyer',
     author_email='darren@darrenpmeyer.com',
-    description='Python logging Formatter for CRLF Injection (CWE-93) prevention', tests_require=['pytest']
+    description='Python logging Formatter for CRLF Injection (CWE-93) prevention',
 )
