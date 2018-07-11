@@ -1,11 +1,11 @@
 ==========================
 logging-formatter-anticrlf
 ==========================
----------------------------------------------------------------
-Python logging Formatter for CRLF Injection (CWE-93) prevention
----------------------------------------------------------------
+--------------------------------------------------------------------------
+Python logging Formatter for CRLF Injection (CWE-93 / CWE-117) prevention
+--------------------------------------------------------------------------
 
-logging Formatter to sanitize CRLF errors (CWE-93)
+logging Formatter to sanitize CRLF errors (CWE-93, some forms of CWE-117)
 
 This class is a drop-in replacement for ``logging.Formatter``, and has the
 exact same construction arguments. However, as a final step of formatting a
@@ -13,6 +13,11 @@ log line, it escapes carriage returns (\\r) and linefeeds (\\n).
 
 By default, these are replaced with their escaped equivalents (see `Examples`_),
 but the ``replacements`` dictionary can be modified to change this behabior.
+
+This sanitization should solve CWE-93 errors and CRLF-based versions of
+CWE-117. Some CWE-117 errors are concerns about e.g. XSS flaws in logs that
+are likely to be viewed in a browser; this formatter can't handle every
+form of CWE-117.
 
 Installation
 ============
