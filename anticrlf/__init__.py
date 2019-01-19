@@ -5,6 +5,9 @@ Defines the class ``AntiCrlfFormatter``
 """
 from __future__ import unicode_literals
 import logging
+import warnings
+
+from anticrlf.types import SubstitutionMap
 
 
 class LogFormatter(logging.Formatter):
@@ -49,15 +52,17 @@ class LogFormatter(logging.Formatter):
     """
     def __init__(self, fmt=None, datefmt=None):
         super(self.__class__, self).__init__(fmt=fmt, datefmt=datefmt)
-        self.replacements = {
-            "\n": "\\n",
-            "\r": "\\r",
-        }
+        self.replacements = SubstitutionMap()  # defaults to mapping \n: \\n and \r: \\r
 
     def format(self, record):
         """calls logger.Formatter.format, then removes CR and LF from the resulting message before returning it"""
+        if type(self.replacements) != SubstitutionMap:
+            warnings.warn(UserWarning("replacements invalid: resetting to defaults"))
+            self.replacements = SubstitutionMap()
+
         formatted_message = super(self.__class__, self).format(record)
 
         for repl in self.replacements:
             formatted_message = formatted_message.replace(repl, self.replacements[repl])
+
         return formatted_message
