@@ -19,26 +19,26 @@ class SubstitutionMap(dict):
     values
     """
     def __init__(self, **kwargs):
-        super(__class__, self).__init__(**kwargs)
+        super(self.__class__, self).__init__(**kwargs)
 
         # if the constructor didn't provide substitutions for CR and LF, set up the defaults
         if "\n" not in self.keys():
-            super(__class__, self).__setitem__("\n", "\\n")
+            super(self.__class__, self).__setitem__("\n", "\\n")
         if "\r" not in self.keys():
-            super(__class__, self).__setitem__("\r", "\\r")
+            super(self.__class__, self).__setitem__("\r", "\\r")
 
         self.check_value()
 
     def __setitem__(self, key, value):
         self.check_value(key, value)
-        super(__class__, self).__setitem__(key, value)
+        super(self.__class__, self).__setitem__(key, value)
 
     def __delitem__(self, key):
-        super(__class__, self).__delitem__(key)
+        super(self.__class__, self).__delitem__(key)
         if "\n" not in self.keys():
-            super(__class__, self).__setitem__("\n", "\\n")
+            super(self.__class__, self).__setitem__("\n", "\\n")
         if "\r" not in self.keys():
-            super(__class__, self).__setitem__("\r", "\\r")
+            super(self.__class__, self).__setitem__("\r", "\\r")
 
     def check_value(self, key=None, value=None):
         subvalues = list(self.values())
