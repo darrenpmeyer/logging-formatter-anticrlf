@@ -32,6 +32,8 @@ Examples
 
 ::
 
+    import sys
+    import logging
     import anticrlf
 
     handler = logging.StreamHandler(sys.stderr)
