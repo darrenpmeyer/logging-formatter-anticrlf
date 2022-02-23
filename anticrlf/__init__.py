@@ -51,7 +51,7 @@ class LogFormatter(logging.Formatter):
 
     """
     def __init__(self, fmt=None, datefmt=None):
-        super(self.__class__, self).__init__(fmt=fmt, datefmt=datefmt)
+        super().__init__(fmt=fmt, datefmt=datefmt)
         self.replacements = SubstitutionMap()  # defaults to mapping \n: \\n and \r: \\r
 
     def format(self, record):
@@ -60,7 +60,7 @@ class LogFormatter(logging.Formatter):
             warnings.warn(UserWarning("replacements invalid: resetting to defaults"))
             self.replacements = SubstitutionMap()
 
-        formatted_message = super(self.__class__, self).format(record)
+        formatted_message = super().format(record)
 
         for repl in self.replacements:
             formatted_message = formatted_message.replace(repl, self.replacements[repl])
