@@ -1,4 +1,4 @@
-# This workflow uses actions that are not certified by GitHub.
+OR# This workflow uses actions that are not certified by GitHub.
 # They are provided by a third-party and are governed by
 # separate terms of service, privacy policy, and support
 # documentation.
@@ -34,11 +34,11 @@ jobs:
       if: github.event_name == 'pull_request'
       uses: endorlabs/github-action@b51bd06466b545f01a6ac788e3e1147695d3936c
       with:
-        namespace: ${{ env.EDNOR_NAMESPACE }}
+        namespace: ${{ env.ENDOR_NAMESPACE }}
     - name: Endor Labs scan monitor
       if: github.event_name == 'push'
       uses: endorlabs/github-action@b51bd06466b545f01a6ac788e3e1147695d3936c
       with:
-        namespace: ${{ env.EDNOR_NAMESPACE }}
+        namespace: ${{ env.ENDOR_NAMESPACE }}
         ci_run: "false"
 
